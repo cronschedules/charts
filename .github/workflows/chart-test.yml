@@ -9,8 +9,10 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
   security-events: write
+  pages: write
+  id-token: write
 
 jobs:
   lint-test:
@@ -83,11 +85,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Install Helm
         uses: azure/setup-helm@v4
@@ -98,5 +101,8 @@ jobs:
         uses: helm/chart-releaser-action@v1.6.0
         with:
           charts_dir: .
+          skip_existing: true
+          config: cr.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_SKIP_EXISTING: true
