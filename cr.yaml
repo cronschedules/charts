@@ -1,0 +1,4 @@
+owner: cronschedules
+git-repo: charts
+charts-dir: .
+skip-existing: true

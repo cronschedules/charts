@@ -1,0 +1,31 @@
+# Chart Testing Configuration
+chart-dirs:
+  - .
+
+# Excluded charts/directories (optional)
+excluded-charts:
+  - ci
+  - .github
+
+# Chart repositories for dependency resolution
+chart-repos:
+  - bitnami=https://charts.bitnami.com/bitnami
+
+# Helm configuration
+helm-extra-args: --timeout 600s --debug
+debug: true
+
+# Target Kubernetes version for testing
+target-branch: main
+
+# Additional validation
+validate-maintainers: false
+check-version-increment: false
+
+# Change detection
+all: false
+remote: origin
+since: HEAD~1
+
+# Lint configuration
+lint-conf: ci/.yamllint
