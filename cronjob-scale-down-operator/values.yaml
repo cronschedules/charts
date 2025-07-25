@@ -2,7 +2,7 @@
 replicaCount: 1
 
 image:
-  repository: cronschedules/z4ck404/cronjob-scale-down-operator
+  repository: ghcr.io/cronschedules/cronjob-scale-down-operator
   pullPolicy: IfNotPresent
   tag: "0.3.0"
 
