@@ -1,6 +1,57 @@
 apiVersion: v1
 entries:
   cronjob-scale-down-operator:
+  - annotations:
+      artifacthub.io/category: monitoring-logging
+      artifacthub.io/changes: |
+        - kind: added
+          description: RBAC watch permissions for ConfigMaps and Services
+        - kind: fixed
+          description: Template rendering issues with startupProbe configuration
+        - kind: changed
+          description: Updated repository structure for dedicated charts repo
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/install: |
+        kubectl create namespace cronschedules-system
+        helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operator --namespace cronschedules-system
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/cronschedules/charts/tree/main/cronjob-scale-down-operator
+        - name: Operator Source
+          url: https://github.com/z4ck404/cronjob-scale-down-operator
+      artifacthub.io/operator: "true"
+      artifacthub.io/operatorCapabilities: Deep Insights
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 0.3.0
+    created: "2025-07-28T23:18:58.76830806Z"
+    description: A Kubernetes operator that automatically scales down Deployments
+      and StatefulSets during specific time windows and cleans up test resources
+    digest: 8b97d6e20564df0a327c034643a0e0b316d0b69585f8a7b4fb95aa3c39bb5396
+    home: https://github.com/cronschedules/charts
+    icon: https://raw.githubusercontent.com/cronschedules/charts/main/cronjob-scale-down-operator/icon.png
+    keywords:
+    - kubernetes
+    - operator
+    - scaling
+    - cleanup
+    - cron
+    - cost-optimization
+    - automation
+    - scheduling
+    maintainers:
+    - email: zakaria@elbazi.co
+      name: z4ck404
+      url: https://github.com/z4ck404
+    name: cronjob-scale-down-operator
+    sources:
+    - https://github.com/cronschedules/charts
+    - https://github.com/z4ck404/cronjob-scale-down-operator
+    type: application
+    urls:
+    - https://github.com/cronschedules/charts/releases/download/cronjob-scale-down-operator-0.3.4/cronjob-scale-down-operator-0.3.4.tgz
+    version: 0.3.4
   - apiVersion: v2
     appVersion: 0.3.0
     created: "2025-07-27T17:03:59.311438953Z"
@@ -76,4 +127,4 @@ entries:
     urls:
     - https://github.com/cronschedules/charts/releases/download/cronjob-scale-down-operator-0.3.0/cronjob-scale-down-operator-0.3.0.tgz
     version: 0.3.0
-generated: "2025-07-27T17:03:59.311452999Z"
+generated: "2025-07-28T23:18:58.768322898Z"
