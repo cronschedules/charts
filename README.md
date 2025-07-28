@@ -1,5 +1,8 @@
 # CronSchedules Charts Repository
 
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/cronschedules)](https://artifacthub.io/packages/search?repo=cronschedules)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 This repository contains Helm charts for various CronJob and scheduling-related Kubernetes operators and applications.
 
 ## Charts
@@ -25,6 +28,8 @@ The operator provides two main features:
 helm repo add cronschedules https://cronschedules.github.io/charts
 helm repo update
 ```
+
+📦 **Also available on [Artifact Hub](https://artifacthub.io/packages/search?repo=cronschedules)**
 
 ### Install Chart
 
