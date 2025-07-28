@@ -1,7 +1,7 @@
-repositoryID: 01234567-89ab-cdef-0123-456789abcdef
+repositoryID: 20b458d4-2128-4011-93cc-b59bc52d1938
 owners:
   - name: z4ck404
-    email: zakaria@elbazi.co
+    email: zakaria.elbazi@outlook.com
 ignore:
   - name: "ci"
   - name: "scripts"
