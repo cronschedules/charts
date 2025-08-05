@@ -4,16 +4,18 @@
 [![Helm Chart](https://img.shields.io/badge/Helm-Chart-blue)](https://helm.sh/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A Kubernetes operator that automatically scales down Deployments and StatefulSets during specific time windows and cleans up test resources based on annotations and schedules.
+A Kubernetes operator that automatically scales down Deployments and StatefulSets during specific time windows and provides comprehensive resource cleanup capabilities including orphan resource management.
 
 ## Features
 
 - **🕒 Scheduled Scaling**: Automatically scale down/up resources based on cron schedules
 - **🧹 Resource Cleanup**: Clean up test resources based on annotations and time-to-live
+- **🗑️ Orphan Cleanup**: Age-based cleanup for resources without annotations (v0.4.0+)
+- **🔐 RBAC Support**: Extended cleanup for Roles, RoleBindings, and cluster resources (v0.4.0+)  
 - **🌍 Timezone Support**: Configure schedules with specific timezones
 - **📊 Metrics & Monitoring**: Built-in Prometheus metrics and health endpoints
 - **🔒 Security**: Runs with minimal required permissions and security contexts
-- **🎯 Flexible Targeting**: Support for Deployments, StatefulSets, and custom resources
+- **🎯 Flexible Targeting**: Support for Deployments, StatefulSets, and comprehensive resource types
 
 ## Prerequisites
 
@@ -42,7 +44,7 @@ helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operat
 # Install with custom values
 helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operator \
   --namespace cronschedules-system \
-  --set image.tag=0.3.0 \
+  --set image.tag=0.4.0 \
   --set resources.limits.memory=256Mi
 ```
 
@@ -51,8 +53,8 @@ helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operat
 | Parameter | Description | Default |
 |-----------|-------------|---------|
 | `replicaCount` | Number of operator replicas | `1` |
-| `image.repository` | Container image repository | `cronschedules/z4ck404/cronjob-scale-down-operator` |
-| `image.tag` | Container image tag | `0.3.0` |
+| `image.repository` | Container image repository | `ghcr.io/cronschedules/cronjob-scale-down-operator` |
+| `image.tag` | Container image tag | `0.4.0` |
 | `image.pullPolicy` | Image pull policy | `IfNotPresent` |
 | `serviceAccount.create` | Create service account | `true` |
 | `rbac.create` | Create RBAC resources | `true` |
@@ -106,8 +108,39 @@ spec:
       - "Service"
       - "ConfigMap"
       - "Secret"
+      - "Pod"
+      - "Job"
     labelSelector:
       environment: "test"
+    dryRun: false
+  timeZone: "UTC"
+```
+
+### Orphan Resource Cleanup (v0.4.0+)
+
+Clean up forgotten resources without cleanup annotations:
+
+```yaml
+apiVersion: cronschedules.elbazi.co/v1
+kind: CronJobScaleDown
+metadata:
+  name: orphan-cleanup
+  namespace: testing
+spec:
+  cleanupSchedule: "0 0 3 * * *"  # Daily at 3 AM
+  cleanupConfig:
+    annotationKey: "cleanup-after"
+    resourceTypes:
+      - "Pod"
+      - "Job"
+      - "ConfigMap"
+      - "Role"
+      - "RoleBinding"
+    # Orphan cleanup for resources older than 7 days
+    cleanupOrphanResources: true
+    orphanResourceMaxAge: "168h"
+    labelSelector:
+      app.kubernetes.io/managed-by: "test"
     dryRun: false
   timeZone: "UTC"
 ```
