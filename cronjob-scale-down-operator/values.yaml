@@ -4,7 +4,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/cronschedules/cronjob-scale-down-operator
   pullPolicy: IfNotPresent
-  tag: "0.3.0"
+  tag: "0.4.0"
 
 imagePullSecrets: []
 nameOverride: ""
