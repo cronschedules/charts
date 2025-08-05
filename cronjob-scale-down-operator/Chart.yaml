@@ -4,7 +4,7 @@ description: >-
   A Kubernetes operator that automatically scales down Deployments and StatefulSets
   during specific time windows and provides comprehensive resource cleanup capabilities
 type: application
-version: 0.3.5
+version: 0.4.0
 appVersion: "0.4.0"
 keywords:
   - kubernetes
@@ -33,15 +33,15 @@ annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
     - kind: added
-      description: Orphan resource cleanup functionality for cleaning up resources without cleanup annotations based on age thresholds
+      description: Orphan resource cleanup functionality for resources without cleanup annotations
     - kind: added
-      description: Extended resource type support including Pod, Job, Role, RoleBinding, ClusterRole, and ClusterRoleBinding for comprehensive cleanup
+      description: Extended resource type support including Pod, Job, Role, RoleBinding, ClusterRole, ClusterRoleBinding
     - kind: added
       description: Enhanced RBAC permissions for new resource types to support extended cleanup capabilities
     - kind: improved
-      description: Enhanced cleanup configuration with cleanupOrphanResources and orphanResourceMaxAge options for better resource management
+      description: Enhanced cleanup configuration with cleanupOrphanResources and orphanResourceMaxAge options
     - kind: improved
-      description: Updated operator to version 0.4.0 with comprehensive resource cleanup and orphan management features
+      description: Updated operator to version 0.4.0 with comprehensive resource cleanup and orphan management
   artifacthub.io/links: |
     - name: Chart Source
       url: https://github.com/cronschedules/charts/tree/main/cronjob-scale-down-operator
