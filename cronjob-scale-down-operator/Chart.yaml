@@ -4,7 +4,7 @@ description: >-
   A Kubernetes operator that automatically scales down Deployments and StatefulSets
   during specific time windows and provides comprehensive resource cleanup capabilities
 type: application
-version: 0.4.0
+version: 0.4.1
 appVersion: "0.4.0"
 keywords:
   - kubernetes
@@ -38,9 +38,9 @@ annotations:
       description: Extended resource type support including Pod, Job, Role, RoleBinding, ClusterRole, ClusterRoleBinding
     - kind: added
       description: Enhanced RBAC permissions for new resource types to support extended cleanup capabilities
-    - kind: improved
+    - kind: changed
       description: Enhanced cleanup configuration with cleanupOrphanResources and orphanResourceMaxAge options
-    - kind: improved
+    - kind: changed
       description: Updated operator to version 0.4.0 with comprehensive resource cleanup and orphan management
   artifacthub.io/links: |
     - name: Chart Source
