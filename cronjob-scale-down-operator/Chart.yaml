@@ -5,7 +5,7 @@ description: >-
   during specific time windows and provides comprehensive resource cleanup capabilities
 type: application
 version: 0.4.1
-appVersion: "0.4.0"
+appVersion: "0.4.1"
 keywords:
   - kubernetes
   - operator
@@ -33,15 +33,19 @@ annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
     - kind: added
-      description: Orphan resource cleanup functionality for resources without cleanup annotations
+      description: Comprehensive Prometheus metrics support for monitoring and observability
     - kind: added
-      description: Extended resource type support including Pod, Job, Role, RoleBinding, ClusterRole, ClusterRoleBinding
+      description: Scale operation metrics with target resource details and reconciliation tracking
     - kind: added
-      description: Enhanced RBAC permissions for new resource types to support extended cleanup capabilities
-    - kind: changed
-      description: Enhanced cleanup configuration with cleanupOrphanResources and orphanResourceMaxAge options
-    - kind: changed
-      description: Updated operator to version 0.4.0 with comprehensive resource cleanup and orphan management
+      description: Resource cleanup metrics by type, label, and orphan resource tracking
+    - kind: added
+      description: Grafana dashboard example and PromQL queries documentation
+    - kind: security
+      description: Updated vulnerable dependencies including golang.org/x/oauth2 and golang.org/x/net
+    - kind: security
+      description: Updated Go version from 1.23.0 to 1.23.12 fixing CVE-2025-47907
+    - kind: fixed
+      description: Improved graceful handling of missing target resources with cleaner logging
   artifacthub.io/links: |
     - name: Chart Source
       url: https://github.com/cronschedules/charts/tree/main/cronjob-scale-down-operator
