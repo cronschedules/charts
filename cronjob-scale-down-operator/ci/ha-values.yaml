@@ -3,7 +3,7 @@ nameOverride: "ha-cronjob-operator"
 
 image:
   repository: ghcr.io/cronschedules/cronjob-scale-down-operator
-  tag: "0.4.0"
+  tag: "0.4.1"
   pullPolicy: IfNotPresent
 
 # Multiple replicas for HA testing

@@ -13,7 +13,7 @@ A Kubernetes operator that automatically scales down Deployments and StatefulSet
 - **🗑️ Orphan Cleanup**: Age-based cleanup for resources without annotations (v0.4.0+)
 - **🔐 RBAC Support**: Extended cleanup for Roles, RoleBindings, and cluster resources (v0.4.0+)  
 - **🌍 Timezone Support**: Configure schedules with specific timezones
-- **📊 Metrics & Monitoring**: Built-in Prometheus metrics and health endpoints
+- **📊 Metrics & Monitoring**: Comprehensive Prometheus metrics with Grafana dashboards (v0.4.1+)
 - **🔒 Security**: Runs with minimal required permissions and security contexts
 - **🎯 Flexible Targeting**: Support for Deployments, StatefulSets, and comprehensive resource types
 
@@ -44,7 +44,7 @@ helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operat
 # Install with custom values
 helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operator \
   --namespace cronschedules-system \
-  --set image.tag=0.4.0 \
+  --set image.tag=0.4.1 \
   --set resources.limits.memory=256Mi
 ```
 
@@ -54,7 +54,7 @@ helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operat
 |-----------|-------------|---------|
 | `replicaCount` | Number of operator replicas | `1` |
 | `image.repository` | Container image repository | `ghcr.io/cronschedules/cronjob-scale-down-operator` |
-| `image.tag` | Container image tag | `0.4.0` |
+| `image.tag` | Container image tag | `0.4.1` |
 | `image.pullPolicy` | Image pull policy | `IfNotPresent` |
 | `serviceAccount.create` | Create service account | `true` |
 | `rbac.create` | Create RBAC resources | `true` |
@@ -147,11 +147,19 @@ spec:
 
 ## Monitoring
 
-The operator exposes Prometheus metrics on port 8080:
+The operator exposes comprehensive Prometheus metrics on port 8080 at `/metrics` endpoint:
 
-- `cronjob_scaledown_reconciliations_total` - Total reconciliation attempts
-- `cronjob_scaledown_scale_operations_total` - Total scaling operations
-- `cronjob_scaledown_cleanup_operations_total` - Total cleanup operations
+### Core Metrics
+- `cronjob_scaledown_reconciliations_total` - Total reconciliation attempts with error tracking
+- `cronjob_scaledown_scale_operations_total` - Total scaling operations (up/down) with target resource details
+- `cronjob_scaledown_cleanup_operations_total` - Total cleanup operations by resource type and label
+- `cronjob_scaledown_orphan_cleanup_total` - Orphan resource cleanup tracking
+- `cronjob_scaledown_active_resources` - Active resource counts and replica status
+- `cronjob_scaledown_schedule_executions` - Schedule execution timestamps
+- `cronjob_scaledown_config_validation_errors` - Configuration validation error tracking
+
+### Grafana Dashboard
+The operator includes example Grafana dashboards and PromQL queries for comprehensive monitoring and observability.
 
 ## Troubleshooting
 
