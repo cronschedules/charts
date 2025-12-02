@@ -4,8 +4,8 @@ description: >-
   A Kubernetes operator that automatically scales down Deployments and StatefulSets
   during specific time windows and provides comprehensive resource cleanup capabilities
 type: application
-version: 0.4.2
-appVersion: "0.4.1"
+version: 0.4.3
+appVersion: "0.4.3"
 keywords:
   - kubernetes
   - operator
