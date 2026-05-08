@@ -5,7 +5,7 @@ description: >-
   during specific time windows and provides comprehensive resource cleanup capabilities
 type: application
 version: 0.4.4
-appVersion: "0.4.3"
+appVersion: "0.4.4"
 keywords:
   - kubernetes
   - operator
