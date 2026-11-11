@@ -40,6 +40,12 @@ spec:
         {{- if .Values.webui.enabled }}
         - --webui-addr=:8082
         {{- end }}
+        {{- if .Values.security.allowCrossNamespace }}
+        - --allow-cross-namespace
+        {{- end }}
+        {{- if .Values.security.allowClusterScopedCleanup }}
+        - --allow-cluster-scoped-cleanup
+        {{- end }}
         command:
         - /manager
         env:
