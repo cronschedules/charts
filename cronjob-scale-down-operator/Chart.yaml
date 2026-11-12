@@ -4,7 +4,7 @@ description: >-
   A Kubernetes operator that automatically scales down Deployments and StatefulSets
   during specific time windows and provides comprehensive resource cleanup capabilities
 type: application
-version: 0.4.4
+version: 0.5.0
 appVersion: "0.4.4"
 keywords:
   - kubernetes
@@ -28,18 +28,18 @@ annotations:
   artifacthub.io/license: MIT
   artifacthub.io/operator: "true"
   artifacthub.io/operatorCapabilities: Deep Insights
-  artifacthub.io/containsSecurityUpdates: "false"
+  artifacthub.io/containsSecurityUpdates: "true"
   artifacthub.io/prerelease: "false"
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
+    - kind: security
+      description: Unauthenticated web UI is no longer exposed by default (webui.enabled=false)
+    - kind: added
+      description: webui.networkPolicy to restrict which peers can reach the web UI port
+    - kind: added
+      description: security.allowCrossNamespace / allowClusterScopedCleanup values (operator >= 0.5.0)
     - kind: changed
-      description: Enhanced documentation with comprehensive Prometheus metrics details
-    - kind: changed
-      description: Updated monitoring section with detailed core metrics and Grafana dashboard information
-    - kind: changed
-      description: Improved installation examples and configuration table for better user experience
-    - kind: changed
-      description: Updated feature descriptions to highlight enhanced observability capabilities
+      description: CRD synced with the operator (orphan cleanup fields, stricter schema validation)
   artifacthub.io/links: |
     - name: Chart Source
       url: https://github.com/cronschedules/charts/tree/main/cronjob-scale-down-operator

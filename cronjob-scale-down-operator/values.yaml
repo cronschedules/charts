@@ -96,9 +96,34 @@ rbac:
 leaderElection:
   enabled: true
 
+# Security policy for what a CronJobScaleDown may act on (operator image >= 0.5.0).
+# The operator runs with a cluster-wide ClusterRole, so anyone able to create a
+# CronJobScaleDown can direct its scale/delete rights. Keep these disabled on
+# multi-tenant clusters.
+security:
+  # Allow spec.targetRef.namespace / spec.cleanupConfig.namespaces to reference
+  # namespaces other than the CronJobScaleDown's own namespace.
+  allowCrossNamespace: false
+  # Allow cleanup of ClusterRole / ClusterRoleBinding.
+  allowClusterScopedCleanup: false
+
 # Web UI configuration
+# The web UI has NO authentication and shows resources from every namespace.
+# When disabled, the chart starts the operator with --webui-addr=127.0.0.1:8082, so the UI
+# is only reachable inside the pod via `kubectl port-forward`. Enabling it binds :8082 and creates
+# a Service (and optionally an Ingress) - put it behind an authenticating proxy and/or
+# enable webui.networkPolicy.
 webui:
-  enabled: true
+  enabled: false
+  # Restrict which peers can reach the web UI port when it is exposed.
+  networkPolicy:
+    enabled: false
+    # NetworkPolicyPeer list allowed to reach port 8082, e.g. your ingress controller:
+    # from:
+    #   - namespaceSelector:
+    #       matchLabels:
+    #         kubernetes.io/metadata.name: ingress-nginx
+    from: []
   service:
     type: ClusterIP
     port: 8082
