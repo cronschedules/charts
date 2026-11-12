@@ -44,7 +44,7 @@ helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operat
 # Install with custom values
 helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operator \
   --namespace cronschedules-system \
-  --set image.tag=0.4.1 \
+  --set image.tag=0.5.0 \
   --set resources.limits.memory=256Mi
 ```
 
@@ -54,7 +54,7 @@ helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operat
 |-----------|-------------|---------|
 | `replicaCount` | Number of operator replicas | `1` |
 | `image.repository` | Container image repository | `ghcr.io/cronschedules/cronjob-scale-down-operator` |
-| `image.tag` | Container image tag | `0.4.1` |
+| `image.tag` | Container image tag | `0.5.0` |
 | `image.pullPolicy` | Image pull policy | `IfNotPresent` |
 | `serviceAccount.create` | Create service account | `true` |
 | `rbac.create` | Create RBAC resources | `true` |
