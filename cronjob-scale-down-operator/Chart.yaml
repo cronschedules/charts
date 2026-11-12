@@ -33,11 +33,11 @@ annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
     - kind: security
-      description: Web UI is no longer exposed by default (webui.enabled=false); it has no authentication. Use kubectl port-forward, or enable it behind an authenticating proxy
+      description: Unauthenticated web UI is no longer exposed by default (webui.enabled=false)
     - kind: added
       description: webui.networkPolicy to restrict which peers can reach the web UI port
     - kind: added
-      description: security.allowCrossNamespace and security.allowClusterScopedCleanup values for the operator's namespace-confinement flags (operator >= 0.5.0)
+      description: security.allowCrossNamespace / allowClusterScopedCleanup values (operator >= 0.5.0)
     - kind: changed
       description: CRD synced with the operator (orphan cleanup fields, stricter schema validation)
   artifacthub.io/links: |
