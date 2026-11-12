@@ -39,6 +39,10 @@ spec:
         - --metrics-bind-address=:8080
         {{- if .Values.webui.enabled }}
         - --webui-addr=:8082
+        {{- else }}
+        # Keep the unauthenticated UI on pod loopback (kubectl port-forward only), even for
+        # operator images whose built-in default listens on all interfaces.
+        - --webui-addr=127.0.0.1:8082
         {{- end }}
         {{- if .Values.security.allowCrossNamespace }}
         - --allow-cross-namespace

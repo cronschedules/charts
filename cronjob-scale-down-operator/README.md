@@ -63,7 +63,7 @@ helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operat
 | `resources.requests.cpu` | CPU request | `10m` |
 | `resources.requests.memory` | Memory request | `64Mi` |
 | `metrics.enabled` | Enable metrics service | `true` |
-| `webui.enabled` | Expose the (unauthenticated) web UI on `:8082` via a Service. When `false`, operator >= 0.5.0 still serves it on pod loopback for `kubectl port-forward` | `false` |
+| `webui.enabled` | Expose the (unauthenticated) web UI on `:8082` via a Service. When `false`, the UI only listens on pod loopback (`--webui-addr=127.0.0.1:8082`) for `kubectl port-forward` | `false` |
 | `webui.networkPolicy.enabled` | Create a NetworkPolicy that only lets `webui.networkPolicy.from` peers reach port 8082 | `false` |
 | `webui.networkPolicy.from` | NetworkPolicy peers allowed to reach the web UI | `[]` |
 | `security.allowCrossNamespace` | Let a CronJobScaleDown target or clean up other namespaces (`--allow-cross-namespace`, operator >= 0.5.0) | `false` |

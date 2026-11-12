@@ -109,8 +109,8 @@ security:
 
 # Web UI configuration
 # The web UI has NO authentication and shows resources from every namespace.
-# When disabled, the operator (>= 0.5.0) still serves it on 127.0.0.1:8082 inside the
-# pod, reachable only with `kubectl port-forward`. Enabling it binds :8082 and creates
+# When disabled, the chart starts the operator with --webui-addr=127.0.0.1:8082, so the UI
+# is only reachable inside the pod via `kubectl port-forward`. Enabling it binds :8082 and creates
 # a Service (and optionally an Ingress) - put it behind an authenticating proxy and/or
 # enable webui.networkPolicy.
 webui:
