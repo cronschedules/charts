@@ -5,6 +5,56 @@ entries:
       artifacthub.io/category: monitoring-logging
       artifacthub.io/changes: |
         - kind: security
+          description: Bump operator image to 0.5.0 (namespace confinement, web UI hardening)
+        - kind: fixed
+          description: Chart 0.5.0 was published with operator image 0.4.4
+      artifacthub.io/containsSecurityUpdates: "true"
+      artifacthub.io/install: |
+        kubectl create namespace cronschedules-system
+        helm install cronjob-scale-down-operator cronschedules/cronjob-scale-down-operator --namespace cronschedules-system
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/cronschedules/charts/tree/main/cronjob-scale-down-operator
+        - name: Operator Source
+          url: https://github.com/z4ck404/cronjob-scale-down-operator
+      artifacthub.io/operator: "true"
+      artifacthub.io/operatorCapabilities: Deep Insights
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 0.5.0
+    created: "2026-11-12T15:17:45.164531707Z"
+    description: A Kubernetes operator that automatically scales down Deployments
+      and StatefulSets during specific time windows and provides comprehensive resource
+      cleanup capabilities
+    digest: 15a6e85fcc7b98dbb100c3174558c1e0734fd14b0fe29559a4bb4faf823345be
+    home: https://github.com/cronschedules/charts
+    icon: https://raw.githubusercontent.com/cronschedules/charts/main/cronjob-scale-down-operator/icon.png
+    keywords:
+    - kubernetes
+    - operator
+    - scaling
+    - cleanup
+    - cron
+    - cost-optimization
+    - automation
+    - scheduling
+    maintainers:
+    - email: zakaria@elbazi.co
+      name: z4ck404
+      url: https://github.com/z4ck404
+    name: cronjob-scale-down-operator
+    sources:
+    - https://github.com/cronschedules/charts
+    - https://github.com/z4ck404/cronjob-scale-down-operator
+    type: application
+    urls:
+    - https://github.com/cronschedules/charts/releases/download/cronjob-scale-down-operator-0.5.1/cronjob-scale-down-operator-0.5.1.tgz
+    version: 0.5.1
+  - annotations:
+      artifacthub.io/category: monitoring-logging
+      artifacthub.io/changes: |
+        - kind: security
           description: Unauthenticated web UI is no longer exposed by default (webui.enabled=false)
         - kind: added
           description: webui.networkPolicy to restrict which peers can reach the web UI port
@@ -401,4 +451,4 @@ entries:
     urls:
     - https://github.com/cronschedules/charts/releases/download/cronjob-scale-down-operator-0.3.0/cronjob-scale-down-operator-0.3.0.tgz
     version: 0.3.0
-generated: "2026-11-12T14:07:20.536884743Z"
+generated: "2026-11-12T15:17:45.164564767Z"
