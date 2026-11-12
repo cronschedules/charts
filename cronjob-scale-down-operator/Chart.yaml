@@ -4,8 +4,8 @@ description: >-
   A Kubernetes operator that automatically scales down Deployments and StatefulSets
   during specific time windows and provides comprehensive resource cleanup capabilities
 type: application
-version: 0.5.0
-appVersion: "0.4.4"
+version: 0.5.1
+appVersion: "0.5.0"
 keywords:
   - kubernetes
   - operator
@@ -33,13 +33,9 @@ annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
     - kind: security
-      description: Unauthenticated web UI is no longer exposed by default (webui.enabled=false)
-    - kind: added
-      description: webui.networkPolicy to restrict which peers can reach the web UI port
-    - kind: added
-      description: security.allowCrossNamespace / allowClusterScopedCleanup values (operator >= 0.5.0)
-    - kind: changed
-      description: CRD synced with the operator (orphan cleanup fields, stricter schema validation)
+      description: Bump operator image to 0.5.0 (namespace confinement, web UI hardening)
+    - kind: fixed
+      description: Chart 0.5.0 was published with operator image 0.4.4
   artifacthub.io/links: |
     - name: Chart Source
       url: https://github.com/cronschedules/charts/tree/main/cronjob-scale-down-operator
