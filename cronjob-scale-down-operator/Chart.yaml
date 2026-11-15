@@ -4,8 +4,8 @@ description: >-
   A Kubernetes operator that automatically scales down Deployments and StatefulSets
   during specific time windows and provides comprehensive resource cleanup capabilities
 type: application
-version: 0.5.1
-appVersion: "0.5.0"
+version: 0.5.2
+appVersion: "0.5.1"
 keywords:
   - kubernetes
   - operator
@@ -33,9 +33,9 @@ annotations:
   artifacthub.io/category: monitoring-logging
   artifacthub.io/changes: |
     - kind: security
-      description: Bump operator image to 0.5.0 (namespace confinement, web UI hardening)
-    - kind: fixed
-      description: Chart 0.5.0 was published with operator image 0.4.4
+      description: Operator image 0.5.1 fixes all 89 CVEs from the 0.5.0 scan (Go 1.26.11, updated deps)
+    - kind: changed
+      description: Operator image is now multi-arch (linux/amd64, linux/arm64)
   artifacthub.io/links: |
     - name: Chart Source
       url: https://github.com/cronschedules/charts/tree/main/cronjob-scale-down-operator
