@@ -98,6 +98,23 @@ jobs:
         with:
           version: v3.14.0
 
+      # Artifact Hub reads artifacthub-repo.yml from the Helm repository URL (gh-pages),
+      # so publish it there before chart-releaser updates index.yaml, which is what makes
+      # Artifact Hub reprocess the repository and apply e.g. the verified publisher flag.
+      - name: Publish Artifact Hub repository metadata
+        run: |
+          git fetch --no-tags origin gh-pages
+          git worktree add --detach "$RUNNER_TEMP/gh-pages" origin/gh-pages
+          if cmp -s artifacthub-repo.yml "$RUNNER_TEMP/gh-pages/artifacthub-repo.yml"; then
+            echo "artifacthub-repo.yml is already up to date on gh-pages"
+          else
+            cp artifacthub-repo.yml "$RUNNER_TEMP/gh-pages/artifacthub-repo.yml"
+            git -C "$RUNNER_TEMP/gh-pages" add artifacthub-repo.yml
+            git -C "$RUNNER_TEMP/gh-pages" commit -m "Update artifacthub-repo.yml from ${GITHUB_SHA::7}"
+            git -C "$RUNNER_TEMP/gh-pages" push origin HEAD:gh-pages
+          fi
+          git worktree remove --force "$RUNNER_TEMP/gh-pages"
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:

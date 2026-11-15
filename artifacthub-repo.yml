@@ -1,9 +1,19 @@
+# Artifact Hub repository metadata file
+# https://github.com/artifacthub/hub/blob/master/docs/metadata/artifacthub-repo.yml
+#
+# For this Helm HTTP repository, Artifact Hub reads this file from the repository URL
+# (https://cronschedules.github.io/charts/artifacthub-repo.yml), i.e. the gh-pages
+# branch. The release workflow copies it there from main; edit it here only.
+#
+# Settings such as the verified publisher flag are applied the next time the
+# repository is processed, which happens when index.yaml changes (a chart release).
+
+# Enables the "Verified Publisher" badge: must match the repository ID shown in the
+# Artifact Hub control panel.
 repositoryID: 20b458d4-2128-4011-93cc-b59bc52d1938
+
+# Users allowed to claim ownership of the repository in Artifact Hub. The email must
+# match the one used to sign in to Artifact Hub.
 owners:
   - name: z4ck404
     email: zakaria.elbazi@outlook.com
-ignore:
-  - name: "ci"
-  - name: "scripts"
-  - name: ".github"
-  - name: "*.md"
