@@ -17,3 +17,10 @@ repositoryID: 20b458d4-2128-4011-93cc-b59bc52d1938
 owners:
   - name: z4ck404
     email: zakaria.elbazi@outlook.com
+
+# Published versions can't be changed. Chart 0.4.0 declares an invalid
+# `artifacthub.io/changes` kind ("improved"), so Artifact Hub fails to process it on
+# every run; ignore it so it stops being reported as a tracking error.
+ignore:
+  - name: cronjob-scale-down-operator
+    version: ^0\.4\.0$
